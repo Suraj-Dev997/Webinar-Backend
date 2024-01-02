@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mssql = require('mssql');
+const cors = require('cors');  // Import the cors middleware
 const dbConfig = require('./configuration/dbConfig');
 const routes = require('./routes');
 
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());  // Enable CORS for all routes
 
 // MSSQL Connection Pool
 const pool = new mssql.ConnectionPool(dbConfig);
